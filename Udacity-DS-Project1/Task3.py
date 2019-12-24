@@ -43,3 +43,45 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+def is_fixed_line(number):
+    return number.startswith('(')
+
+def is_mobile(number):
+    return number.startswith('7') or number.startswith('8') or number.startswith('9')
+
+def get_prefix(number, startIndex, endIndex):
+    return number[startIndex:endIndex]
+
+assert is_fixed_line('(080)12345678')
+assert is_mobile('7890123456')
+assert get_prefix('(080)12345678', 1, 4) == '080'
+assert get_prefix('08012345678', 0, 4) == '0801'
+assert get_prefix('14012345678', 0, 3) == '140'
+
+total_banglore_outgoing = 0
+banglore_only_calls = 0
+outcall_area_codes = set()
+
+for call in calls:
+    if is_fixed_line(call[0]) and get_prefix(call[0], 1, 4) == '080':
+        total_banglore_outgoing += 1
+        if is_fixed_line(call[1]):
+            prefix = get_prefix(call[1], 1, 4)
+            outcall_area_codes.add(prefix)
+            if prefix == '080':
+                banglore_only_calls += 1
+        elif is_mobile(call[1]):
+            outcall_area_codes.add(get_prefix(call[1], 0, 4))
+        else:
+            outcall_area_codes.add('140')
+
+outcall_area_codes = sorted(outcall_area_codes)
+print('The numbers called by people in Bangalore have codes:')
+for code in outcall_area_codes:
+    print(code)
+
+
+print('%2.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %(banglore_only_calls * 100 / total_banglore_outgoing))
+
+

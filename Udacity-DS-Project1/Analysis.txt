@@ -1,0 +1,10 @@
+Time Complexity for tasks.
+
+------------------------------------------------------------------------------------------------------------------------
+Task#               |   Complexity      | Notes
+------------------------------------------------------------------------------------------------------------------------
+Task0.py            |   O(n)            | n times iteration is required in each file read.
+Task1.py            |   O(n)            | n times for file read and n times for flatenning list
+Task2.py            |   O(n)            | n times for read and n times for finding max
+Task3.py            |   O(nlogn)        | nlogn because of the sort
+Task4.py            |   O(nlogn)        | nlogn because of the sort

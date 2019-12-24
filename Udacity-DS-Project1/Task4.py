@@ -25,3 +25,29 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+def is_tele_marketer(number):
+    return number.startswith('140')
+
+assert is_tele_marketer('140111222')
+
+tele_market_outcallers = set()
+tele_market_txt_incoming = set()
+
+for call in calls:
+    if is_tele_marketer(call[0]):
+        tele_market_outcallers.add(call[0])
+    if(is_tele_marketer(call[1])):
+        tele_market_txt_incoming.add(call[1])
+
+for text in texts:
+    if(is_tele_marketer(call[0])):
+        tele_market_txt_incoming.add(call[0])
+    if(is_tele_marketer(call[1])):
+        tele_market_txt_incoming.add(call[1])
+
+tele_market_outcallers_only = tele_market_outcallers.difference(tele_market_txt_incoming)
+tele_market_outcallers_only = sorted(tele_market_outcallers_only)
+
+print('These numbers could be telemarketers: ')
+for number in tele_market_outcallers_only:
+    print(number)
